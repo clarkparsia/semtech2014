@@ -1,9 +1,8 @@
-@Grab('com.complexible.stardog:stardog-groovy:2.2.1')
-import com.complexible.stardog.ext.groovy.*
+@Grab('com.github.albaker:GroovySparql:0.7.2')
+import groovy.sparql.*
 
-
-def db = new Stardog([url: "snarl://localhost:5820/", to:"oslc", username:"admin", password:"admin"])
-
+def sparql = new Sparql(endpoint:"http://localhost:5820/oslc/query", user:"admin", pass:"admin")
+def updateService = new Sparql(updateEndpoint:"http://localhost:5820/oslc/update", user:"admin", pass:"admin")
 
 def prefixes = """
     PREFIX oslc: <http://open-services.net/ns/core#>
@@ -16,12 +15,26 @@ def prefixes = """
 """
 
 println "PLANS"
-def sparql = """ ${prefixes}
+def query = """ ${prefixes}
     SELECT ?planUri {?planUri rdf:type oslc_qm:TestPlan}
 """
 
-db.query sparql, {
-    println it
+sparql.each query, {
+    println planUri
+
+    def updateQuery = """${prefixes}
+    INSERT {
+       <${planUri}> dcterms:subject \"Web Test\" .
+       <${planUri}> dcterms:subject \"Groovylang\"
+    } WHERE { }
+
+"""
+
+    println "Running SPARQL Update: "
+    println updateQuery
+
+    updateService.update updateQuery
+
 }
 
 true
