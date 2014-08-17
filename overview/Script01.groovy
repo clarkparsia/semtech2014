@@ -1,14 +1,6 @@
 @Grab('com.github.albaker:GroovySparql:0.6')
 import groovy.sparql.*
 
-/////////////////////////////////
-//
-//
-//
-//
-//
-/////////////////////////////////
-
 def sparql = new Sparql(endpoint:"http://localhost:5820/oslc/query", user:"admin", pass:"admin")
 
 def prefixes = """
@@ -19,7 +11,6 @@ def prefixes = """
     PREFIX oslc_cm: <http://open-services.net/ns/cm#>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     PREFIX rep_qm: <http://jazz.net/xmlns/alm/qm/v0.1/>
-    PREFIX hitss: <http://hitss.nasa.gov/>
 """
 
 println "PLANS"

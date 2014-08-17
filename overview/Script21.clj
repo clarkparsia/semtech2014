@@ -1,11 +1,16 @@
-@Grab('com.complexible.stardog:stardog-groovy:2.2.1')
-import com.complexible.stardog.ext.groovy.*
+#_(defdeps
+    [[org.clojure/clojure "1.6.0"]
+     [clj-sparql "0.2.0"]])
 
+;; uses lein oneoff, e.g. lein oneoff Script21.clj
 
-def db = new Stardog([url: "snarl://localhost:5820/", to:"oslc", username:"admin", password:"admin"])
+(ns example
+ (:require
+            [clj-sparql.core :refer :all]))
 
+(def config {:endpoint "http://localhost:5820/oslc/query" :user "admin" :pass "admin"})
 
-def prefixes = """
+(def prefixes "
     PREFIX oslc: <http://open-services.net/ns/core#>
     PREFIX dcterms: <http://purl.org/dc/terms/>
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -13,15 +18,13 @@ def prefixes = """
     PREFIX oslc_cm: <http://open-services.net/ns/cm#>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     PREFIX rep_qm: <http://jazz.net/xmlns/alm/qm/v0.1/>
-"""
+")
 
-println "PLANS"
-def sparql = """ ${prefixes}
+(println "Plans")
+
+(def sparql-query (str prefixes "
     SELECT ?planUri {?planUri rdf:type oslc_qm:TestPlan}
-"""
+"))
 
-db.query sparql, {
-    println it
-}
 
-true
+(doall (map println (query config sparql-query)))
