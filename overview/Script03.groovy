@@ -12,6 +12,7 @@ def prefixes = """
     PREFIX oslc_cm: <http://open-services.net/ns/cm#>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     PREFIX rep_qm: <http://jazz.net/xmlns/alm/qm/v0.1/>
+    PREFIX hitss: <http://hitss.nasa.gov/>
 """
 
 println "TESTCASES"
