@@ -4,7 +4,7 @@ This repo provides the data, code, and sample projects shown at the 2014 SemTech
 
 ## Installation
 
-1. Download (Stardog)[http://stardog.com]
+1. Download [Stardog](http://stardog.com)
 2. Run `stardog-2.2.1/bin/mavenInstall`
 3. Create the oslc database `bin/stardog-admin db create -n oslc --searchable -o strict.parsing=false -- /path/to/data/oslc/oslc_sample.ttl`
 4. Browse to the (database)[http://localhost:5820/oslc]
@@ -43,7 +43,7 @@ For oslc-quality, the Stardog-clj CRUD application
 
 ## Questions
 
-Any questions, please refer to the (Stardog Google Group)[https://groups.google.com/a/clarkparsia.com/forum/#!forum/stardog]
+Any questions, please refer to the [Stardog Google Group](https://groups.google.com/a/clarkparsia.com/forum/#!forum/stardog)
 
 
 
