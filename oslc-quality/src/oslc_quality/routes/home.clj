@@ -5,7 +5,7 @@
             [ring.util.codec :refer [base64-decode]]))
 
 (defn home []
-  "Hello World3!")
+  "Welcome, try /items")
 
 
 (defn handle-index-items [req]
